@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController2D : MonoBehaviour
 {
@@ -85,10 +86,21 @@ public class PlayerController2D : MonoBehaviour
         else playerAnim.SetBool("isRunning", false);
     }*/
 
+    private static void RestartScene()
+    {
+        var currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
+    }
+
     #region Input Events
 
     // Para crear un evento:
-    // Se difine public sin tipo de dato (VOID) y con una referencia al input (Callback.Context)
+    /*
+        public void Handle'movimiento'(InputAction.CallbackContext context)
+        {
+            
+        }
+    */
 
     public void HandleMove(InputAction.CallbackContext context)
     {
@@ -101,8 +113,17 @@ public class PlayerController2D : MonoBehaviour
         {
             if (isGrounded)
             {
+                playerRb.velocity = new Vector3(playerRb.velocity.x, 0, 0); // Reinicia la caida para evitar antosaltos
                 playerRb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
             }
+        }
+    }
+
+    public void HandleReset(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            RestartScene();
         }
     }
 
