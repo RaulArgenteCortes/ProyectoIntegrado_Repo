@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 490806a5556e31a4c98ff7aba3cbdf31
+guid: 1c02f9951bb9d254084039c00645946c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -149,7 +149,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: New Piskel_0
+      name: Player_Sprite_Run_0
       rect:
         serializedVersion: 2
         x: 0
@@ -163,14 +163,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7808179aa67cbd141b2cfa5ade18ac92
-      internalID: 1737336113
+      spriteID: 32d410c61ae7d424dad24f5580c0a2ee
+      internalID: -1588503377
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: New Piskel_1
+      name: Player_Sprite_Run_1
       rect:
         serializedVersion: 2
         x: 16
@@ -184,14 +184,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf34c552c59dcd146bf673008cfc4d30
-      internalID: 915287910
+      spriteID: b57a11045a3f20c4cb90f0786ce65a64
+      internalID: 1227781040
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: New Piskel_2
+      name: Player_Sprite_Run_2
       rect:
         serializedVersion: 2
         x: 32
@@ -205,14 +205,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 14aac56d723ea5b4d900bbb890dfbf3d
-      internalID: 1222553338
+      spriteID: b2bd44adbbcf7f247ab97ecedbdffca4
+      internalID: -483271046
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: New Piskel_3
+      name: Player_Sprite_Run_3
       rect:
         serializedVersion: 2
         x: 48
@@ -226,8 +226,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 139899c1d88c7914d943215ee9017afb
-      internalID: -59284905
+      spriteID: 2099200ed66f5324bbbf1e39c0abc293
+      internalID: -650342020
       vertices: []
       indices: 
       edges: []
@@ -243,10 +243,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      New Piskel_0: 1737336113
-      New Piskel_1: 915287910
-      New Piskel_2: 1222553338
-      New Piskel_3: -59284905
+      Player_Sprite_Run_0: -1588503377
+      Player_Sprite_Run_1: 1227781040
+      Player_Sprite_Run_2: -483271046
+      Player_Sprite_Run_3: -650342020
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
