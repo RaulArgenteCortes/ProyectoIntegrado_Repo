@@ -63,6 +63,7 @@ public class PlayerController2D : MonoBehaviour
     void Movement()
     {
         playerRb.velocity = new Vector3(moveInput.x * speed, playerRb.velocity.y, 0);
+        //playerRb.AddForce(Vector3.right * moveInput.x * speed);
     }
 
     void Flip()
