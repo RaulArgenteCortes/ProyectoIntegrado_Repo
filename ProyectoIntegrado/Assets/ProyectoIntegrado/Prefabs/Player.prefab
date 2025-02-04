@@ -131,7 +131,7 @@ Animator:
   m_GameObject: {fileID: 6954387033872054238}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cd803e1e74839b24f84b3532e9b67b63, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -238,6 +238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerRb: {fileID: 1334420678998693903}
   playerInput: {fileID: 7883971944802232059}
+  playerAnim: {fileID: 6384363913346568721}
   speed: 8
   isFacingRight: 1
   jumpForce: 17

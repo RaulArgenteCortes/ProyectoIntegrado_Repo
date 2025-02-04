@@ -9,7 +9,7 @@ public class PlayerController2D : MonoBehaviour
     // Referencias generales
     [SerializeField] Rigidbody2D playerRb;
     [SerializeField] PlayerInput playerInput;
-    //[SerializeField] Animator playerAnim;
+    [SerializeField] Animator playerAnim;
 
     [Header("Movement Parameters")]
     private Vector3 moveInput; //Almacén del input del player
@@ -29,13 +29,13 @@ public class PlayerController2D : MonoBehaviour
         // Autoreferenciar componentes: nombre de variable = GetComponent()
         playerRb = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
-        //playerAnim = GetComponent<Animator>();
+        playerAnim = GetComponent<Animator>();
         isFacingRight = true;
     }
 
     void Update()
     {
-        //HandleAnimations();
+        HandleAnimations();
 
         GroundCheck();
 
@@ -79,13 +79,37 @@ public class PlayerController2D : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
     }
 
-    /*void HandleAnimations()
+    void HandleAnimations()
     {
         // Conector de valores generales con parametros de animación
-        playerAnim.SetBool("isJumping", !isGrounded);
-        if (moveInput.x > 0 || moveInput.x < 0) playerAnim.SetBool("IsRunning", true);
-        else playerAnim.SetBool("IsRunning", false);
-    }*/
+
+        //playerAnim.SetBool("isJumping", !isGrounded);
+
+        if (playerRb.velocity.y > 0.01)
+        {
+            playerAnim.SetBool("isJumping", true);
+            playerAnim.SetBool("isFalling", false);
+        }
+        else if (playerRb.velocity.y < 0.01 && isGrounded == false)
+        {
+            playerAnim.SetBool("isJumping", false);
+            playerAnim.SetBool("isFalling", true);
+        }
+        else
+        {
+            playerAnim.SetBool("isJumping", false);
+            playerAnim.SetBool("isFalling", false);
+        }
+
+        if (moveInput.x > 0 || moveInput.x < 0) 
+        { 
+            playerAnim.SetBool("isRunning", true); 
+        }
+        else 
+        { 
+            playerAnim.SetBool("isRunning", false); 
+        }
+    }
 
     private static void RestartScene()
     {
