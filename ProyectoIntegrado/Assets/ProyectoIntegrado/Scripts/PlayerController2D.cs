@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerController2D : MonoBehaviour
 {
@@ -60,10 +61,22 @@ public class PlayerController2D : MonoBehaviour
         Movement();
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Boost_TallJump"))
+        {
+            playerRb.velocity = new Vector2(playerRb.velocity.x, playerRb.velocity.y / Mathf.Abs(playerRb.velocity.y) * -24); // Impulsa al jugador en el Y opuesto
+        }
+        else if (collision.gameObject.CompareTag("Boost_LongJump"))
+        {
+            playerRb.velocity = new Vector2(playerRb.velocity.x / Mathf.Abs(playerRb.velocity.x) * 24, playerRb.velocity.y); // Impulsa al jugador en el X
+        }
+    }
+
     void Movement()
     {
-        playerRb.velocity = new Vector3(moveInput.x * speed, playerRb.velocity.y, 0);
-        //playerRb.AddForce(Vector3.right * moveInput.x * speed);
+        playerRb.velocity = new Vector3(moveInput.x * speed, playerRb.velocity.y, 0); // Sin deslizamiento
+        //playerRb.AddForce(Vector3.right * moveInput.x * speed); // Con deslizamiento
     }
 
     void Flip()
@@ -82,8 +95,6 @@ public class PlayerController2D : MonoBehaviour
     void HandleAnimations()
     {
         // Conector de valores generales con parametros de animación
-
-        //playerAnim.SetBool("isJumping", !isGrounded);
 
         if (playerRb.velocity.y > 0.01)
         {
@@ -138,7 +149,7 @@ public class PlayerController2D : MonoBehaviour
         {
             if (isGrounded)
             {
-                playerRb.velocity = new Vector3(playerRb.velocity.x, 0, 0); // Reinicia la caida para evitar antosaltos
+                playerRb.velocity = new Vector3(playerRb.velocity.x, 0, 0); // Reinicia la caida para evitar antisaltos
                 playerRb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
             }
         }
