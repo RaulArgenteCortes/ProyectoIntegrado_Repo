@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Boost_TallJump
   - Boost_LongJump
+  - Boost_BounceJump
+  - Death
+  - Boost_Teleport
+  - WarpH
+  - WarpV
   layers:
   - Default
   - TransparentFX
