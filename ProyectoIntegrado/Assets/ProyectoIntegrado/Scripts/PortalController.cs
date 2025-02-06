@@ -7,8 +7,11 @@ public class PortalController : MonoBehaviour
 {
     [SerializeField] Transform destination;
 
-    public Transform GetDestination()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        return destination;
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.transform.position = destination.position;
+        }
     }
 }

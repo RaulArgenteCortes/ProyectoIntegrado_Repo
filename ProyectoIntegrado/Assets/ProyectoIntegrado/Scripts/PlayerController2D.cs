@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerController2D : MonoBehaviour
@@ -21,8 +22,10 @@ public class PlayerController2D : MonoBehaviour
 
     [Header("Jump Parameters")]
     public float jumpForce;
-    [SerializeField] bool isGrounded;
+    public float jumpLengthening;
+    public bool isJumpHolded;
     // Variables para el GroundCheck
+    [SerializeField] bool isGrounded;
     [SerializeField] Transform groundCheck;
     [SerializeField] float groundCheckRadius = 0.1f;
     [SerializeField] LayerMask groundLayer;
@@ -34,6 +37,7 @@ public class PlayerController2D : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         playerAnim = GetComponent<Animator>();
         isFacingRight = true;
+        isJumpHolded = false;
     }
 
     void Update()
@@ -70,15 +74,13 @@ public class PlayerController2D : MonoBehaviour
     private void FixedUpdate()
     {
         Movement();
+
+        LengthenJump();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Boost_Teleport")) // Teletransporta al jugador
-        {
-            //collision.gameObject.TeleportPlayer();
-        }
-        else if (collision.gameObject.CompareTag("Boost_TallJump")) // Impulsa al jugador en el Y opuesto
+        if (collision.gameObject.CompareTag("Boost_TallJump")) // Impulsa al jugador en el Y opuesto
         {
             if (playerRb.velocity.y <= 0)
             {
@@ -163,6 +165,20 @@ public class PlayerController2D : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
     }
 
+    void LengthenJump()
+    {
+        if (isJumpHolded == true && isGrounded == false && playerRb.velocity.y > 0) // Alarga el salto cuando se mantiene en input
+        {
+            playerRb.AddForce(Vector3.up * jumpLengthening, ForceMode2D.Impulse);
+        }
+    }
+
+    private static void RestartScene()
+    {
+        var currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
+    }
+
     void HandleAnimations()
     {
         // Conector de valores generales con parametros de animación
@@ -193,12 +209,6 @@ public class PlayerController2D : MonoBehaviour
         }
     }
 
-    private static void RestartScene()
-    {
-        var currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.name);
-    }
-
     #region Input Events
 
     // Para crear un evento:
@@ -218,11 +228,18 @@ public class PlayerController2D : MonoBehaviour
     {
         if (context.started)
         {
-            if (isGrounded)
+            if (isGrounded == true)
             {
                 playerRb.velocity = new Vector3(playerRb.velocity.x, 0, 0); // Reinicia la caida para evitar antisaltos
                 playerRb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
             }
+
+            isJumpHolded = true;
+        }
+
+        if (context.canceled)
+        {
+            isJumpHolded = false;
         }
     }
 

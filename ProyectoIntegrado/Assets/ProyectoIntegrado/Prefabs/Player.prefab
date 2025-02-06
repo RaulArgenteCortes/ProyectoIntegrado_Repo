@@ -121,7 +121,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 1
+  m_SpriteSortPoint: 0
 --- !u!95 &6384363913346568721
 Animator:
   serializedVersion: 5
@@ -240,12 +240,13 @@ MonoBehaviour:
   playerRb: {fileID: 1334420678998693903}
   playerInput: {fileID: 7883971944802232059}
   playerAnim: {fileID: 6384363913346568721}
-  moveInput: {x: 0, y: 0, z: 0}
   acceleration: 8
   isFacingRight: 1
   maxRunSpeed: 32
   maxFallingSpeed: 16
-  jumpForce: 16
+  jumpForce: 14
+  jumpLengthening: 0.2
+  isJumpHolded: 0
   isGrounded: 1
   groundCheck: {fileID: 1746048244432810583}
   groundCheckRadius: 0.1
