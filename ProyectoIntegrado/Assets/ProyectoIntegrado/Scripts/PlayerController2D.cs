@@ -13,7 +13,7 @@ public class PlayerController2D : MonoBehaviour
     [SerializeField] Animator playerAnim;
 
     [Header("Movement Parameters")]
-    private Vector3 moveInput; //Almacén del input del player
+    [SerializeField] private Vector3 moveInput; //Almacén del input del player
     public float speed;
     [SerializeField] bool isFacingRight;
 
@@ -63,20 +63,88 @@ public class PlayerController2D : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Boost_TallJump"))
+        if (collision.gameObject.CompareTag("WarpH")) // Warpea al jugador horizontalmente
         {
-            playerRb.velocity = new Vector2(playerRb.velocity.x, playerRb.velocity.y / Mathf.Abs(playerRb.velocity.y) * -24); // Impulsa al jugador en el Y opuesto
+            Debug.Log("Warp!");
         }
-        else if (collision.gameObject.CompareTag("Boost_LongJump"))
+        else if (collision.gameObject.CompareTag("WarpV")) // Warpea al jugador verticalmente
         {
-            playerRb.velocity = new Vector2(playerRb.velocity.x / Mathf.Abs(playerRb.velocity.x) * 24, playerRb.velocity.y); // Impulsa al jugador en el X
+
+        }
+        else if (collision.gameObject.CompareTag("Boost_Teleport")) // Teletransporta al jugador
+        {
+
+        }
+        else if (collision.gameObject.CompareTag("Boost_TallJump")) // Impulsa al jugador en el Y opuesto
+        {
+            if (playerRb.velocity.y <= 0)
+            {
+                playerRb.velocity = new Vector2(playerRb.velocity.x, 24);
+            } 
+            else
+            {
+                playerRb.velocity = new Vector2(playerRb.velocity.x, -24);
+            }
+        }
+        else if (collision.gameObject.CompareTag("Boost_LongJump")) // Impulsa al jugador en el X y en el Y opuesto
+        {
+            if (playerRb.velocity.y <= 0)
+            {
+                playerRb.velocity = new Vector2(speed * moveInput.x * 2, jumpForce);
+            }
+            else
+            {
+                playerRb.velocity = new Vector2(speed * moveInput.x * 2, jumpForce * -1);
+            }
+        }
+        else if (collision.gameObject.CompareTag("Boost_BounceJump")) // Impulsa al jugador en el X opuesto y en el Y
+        {
+            if (playerRb.velocity.y <= 0)
+            {
+                if (playerRb.velocity.x >= 0)
+                {
+                    playerRb.velocity = new Vector2(speed * -2, jumpForce * -1);
+                }
+                else if (playerRb.velocity.x <= 0)
+                {
+                    playerRb.velocity = new Vector2(speed * 2, jumpForce * -1);
+                }
+            }
+            else
+            {
+                if (playerRb.velocity.x >= 0)
+                {
+                    playerRb.velocity = new Vector2(speed * -2, jumpForce);
+                }
+                else if (playerRb.velocity.x <= 0)
+                {
+                    playerRb.velocity = new Vector2(speed * 2, jumpForce);
+                }
+            }
+        }
+        else if (collision.gameObject.CompareTag("Death")) // Mata al jugador
+        {
+            RestartScene();
         }
     }
 
     void Movement()
     {
-        playerRb.velocity = new Vector3(moveInput.x * speed, playerRb.velocity.y, 0); // Sin deslizamiento
-        //playerRb.AddForce(Vector3.right * moveInput.x * speed); // Con deslizamiento
+        playerRb.AddForce(Vector3.right * moveInput.x * speed);
+
+        // Reduce el deslizamiento
+        if (moveInput.x == 0 && playerRb.velocity.x < 0.1 && playerRb.velocity.x > -0.1) // Detiene al jugador cuando no hay input y apenas se mueva
+        {
+            playerRb.velocity = new Vector3(0, playerRb.velocity.y, 0);
+        }
+        else if (playerRb.velocity.x > 0 && moveInput.x != 1) // Frena al jugador cuando no hay input
+        {
+                playerRb.AddForce(Vector3.right * playerRb.velocity.x * -3);
+        }
+        else if (playerRb.velocity.x < -0 && moveInput.x != -1) // Frena al jugador cuando no hay input
+        {
+            playerRb.AddForce(Vector3.right * playerRb.velocity.x * -3);
+        } 
     }
 
     void Flip()
