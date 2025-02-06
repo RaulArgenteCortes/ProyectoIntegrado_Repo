@@ -63,17 +63,17 @@ public class PlayerController2D : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("WarpH")) // Warpea al jugador horizontalmente
+        if (collision.gameObject.CompareTag("WarpH")) // Invierte la posición en X del jugador
         {
-            Debug.Log("Warp!");
+            playerRb.transform.position = new Vector2(playerRb.transform.position.x * -1, playerRb.transform.position.y);
         }
-        else if (collision.gameObject.CompareTag("WarpV")) // Warpea al jugador verticalmente
+        else if (collision.gameObject.CompareTag("WarpV")) // Invierte la posición en Y del jugador
         {
-
+            playerRb.transform.position = new Vector2(playerRb.transform.position.x, playerRb.transform.position.y * -1);
         }
         else if (collision.gameObject.CompareTag("Boost_Teleport")) // Teletransporta al jugador
         {
-
+            //collision.gameObject.TeleportPlayer();
         }
         else if (collision.gameObject.CompareTag("Boost_TallJump")) // Impulsa al jugador en el Y opuesto
         {
