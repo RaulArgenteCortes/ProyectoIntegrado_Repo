@@ -13,9 +13,11 @@ public class PlayerController2D : MonoBehaviour
     [SerializeField] Animator playerAnim;
 
     [Header("Movement Parameters")]
-    [SerializeField] private Vector3 moveInput; //Almacén del input del player
-    public float speed;
+    private Vector3 moveInput; //Almacén del input del player
+    public float acceleration;
     [SerializeField] bool isFacingRight;
+    [SerializeField] float maxRunSpeed;
+    [SerializeField] float maxFallingSpeed;
 
     [Header("Jump Parameters")]
     public float jumpForce;
@@ -40,6 +42,15 @@ public class PlayerController2D : MonoBehaviour
 
         GroundCheck();
 
+        if (playerRb.velocity.x > maxRunSpeed || playerRb.velocity.x < maxRunSpeed * -1) // Evita que el jugador avance demasiado rápido
+        {
+            playerRb.velocity = new Vector2(maxRunSpeed * moveInput.x, playerRb.velocity.y);
+        }
+        if (playerRb.velocity.y < maxFallingSpeed * -1) // Evita que el jugador caiga demasiado rápido
+        {
+            playerRb.velocity = new Vector2(playerRb.velocity.x, maxFallingSpeed * -1);
+        }
+
         if (moveInput.x > 0)
         {
             if (!isFacingRight)
@@ -63,15 +74,7 @@ public class PlayerController2D : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("WarpH")) // Invierte la posición en X del jugador
-        {
-            playerRb.transform.position = new Vector2(playerRb.transform.position.x * -1, playerRb.transform.position.y);
-        }
-        else if (collision.gameObject.CompareTag("WarpV")) // Invierte la posición en Y del jugador
-        {
-            playerRb.transform.position = new Vector2(playerRb.transform.position.x, playerRb.transform.position.y * -1);
-        }
-        else if (collision.gameObject.CompareTag("Boost_Teleport")) // Teletransporta al jugador
+        if (collision.gameObject.CompareTag("Boost_Teleport")) // Teletransporta al jugador
         {
             //collision.gameObject.TeleportPlayer();
         }
@@ -90,11 +93,11 @@ public class PlayerController2D : MonoBehaviour
         {
             if (playerRb.velocity.y <= 0)
             {
-                playerRb.velocity = new Vector2(speed * moveInput.x * 2, jumpForce);
+                playerRb.velocity = new Vector2(acceleration * moveInput.x * 2, jumpForce);
             }
             else
             {
-                playerRb.velocity = new Vector2(speed * moveInput.x * 2, jumpForce * -1);
+                playerRb.velocity = new Vector2(acceleration * moveInput.x * 2, jumpForce * -1);
             }
         }
         else if (collision.gameObject.CompareTag("Boost_BounceJump")) // Impulsa al jugador en el X opuesto y en el Y
@@ -103,22 +106,22 @@ public class PlayerController2D : MonoBehaviour
             {
                 if (playerRb.velocity.x >= 0)
                 {
-                    playerRb.velocity = new Vector2(speed * -2, jumpForce * -1);
+                    playerRb.velocity = new Vector2(acceleration * -2, jumpForce * -1);
                 }
                 else if (playerRb.velocity.x <= 0)
                 {
-                    playerRb.velocity = new Vector2(speed * 2, jumpForce * -1);
+                    playerRb.velocity = new Vector2(acceleration * 2, jumpForce * -1);
                 }
             }
             else
             {
                 if (playerRb.velocity.x >= 0)
                 {
-                    playerRb.velocity = new Vector2(speed * -2, jumpForce);
+                    playerRb.velocity = new Vector2(acceleration * -2, jumpForce);
                 }
                 else if (playerRb.velocity.x <= 0)
                 {
-                    playerRb.velocity = new Vector2(speed * 2, jumpForce);
+                    playerRb.velocity = new Vector2(acceleration * 2, jumpForce);
                 }
             }
         }
@@ -130,7 +133,7 @@ public class PlayerController2D : MonoBehaviour
 
     void Movement()
     {
-        playerRb.AddForce(Vector3.right * moveInput.x * speed);
+        playerRb.AddForce(Vector3.right * moveInput.x * acceleration);
 
         // Reduce el deslizamiento
         if (moveInput.x == 0 && playerRb.velocity.x < 0.1 && playerRb.velocity.x > -0.1) // Detiene al jugador cuando no hay input y apenas se mueva
