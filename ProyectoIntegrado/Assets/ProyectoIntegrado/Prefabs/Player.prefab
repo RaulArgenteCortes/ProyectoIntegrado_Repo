@@ -245,11 +245,11 @@ MonoBehaviour:
   maxRunSpeed: 32
   maxFallingSpeed: 16
   jumpForce: 14
-  jumpLengthening: 0.2
+  jumpLengthening: 0.25
   isJumpHolded: 0
   isGrounded: 1
   groundCheck: {fileID: 1746048244432810583}
-  groundCheckRadius: 0.1
+  groundCheckRadius: 0.4
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
