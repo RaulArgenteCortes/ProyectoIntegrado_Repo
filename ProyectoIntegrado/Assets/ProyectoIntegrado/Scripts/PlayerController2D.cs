@@ -167,7 +167,7 @@ public class PlayerController2D : MonoBehaviour
 
     void LengthenJump()
     {
-        if (isJumpHolded == true && isGrounded == false && playerRb.velocity.y > 0) // Alarga el salto cuando se mantiene en input
+        if (isJumpHolded == true /*&& isGrounded == false*/ && playerRb.velocity.y > 0) // Alarga el salto cuando se mantiene en input
         {
             playerRb.AddForce(Vector3.up * jumpLengthening, ForceMode2D.Impulse);
         }
