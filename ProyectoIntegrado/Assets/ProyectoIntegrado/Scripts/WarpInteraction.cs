@@ -15,11 +15,11 @@ public class WarpInteraction : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("WarpH")) // Invierte la posición en X del objeto
         {
-            objectRb.transform.position = new Vector2(objectRb.transform.position.x * -1, objectRb.transform.position.y);
+            objectRb.transform.position = new Vector2(objectRb.transform.position.x * -1f, objectRb.transform.position.y);
         }
         else if (collision.gameObject.CompareTag("WarpV")) // Invierte la posición en Y del objeto
         {
-            objectRb.transform.position = new Vector2(objectRb.transform.position.x, objectRb.transform.position.y * -1);
+            objectRb.transform.position = new Vector2(objectRb.transform.position.x, objectRb.transform.position.y * -1f);
         }
     }
 }
