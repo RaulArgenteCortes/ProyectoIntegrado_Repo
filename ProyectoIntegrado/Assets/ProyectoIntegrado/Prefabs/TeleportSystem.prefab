@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8955390250148384252}
   - component: {fileID: 3162770951757213729}
   - component: {fileID: 5288658489086661453}
+  - component: {fileID: 8080418072683075412}
   m_Layer: 0
   m_Name: TeleportIn
   m_TagString: Boost_Teleport
@@ -192,6 +193,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 1245917551413923126}
+--- !u!114 &8080418072683075412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119736193401421012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6899515a7f0b874cb1991511201451d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectRb: {fileID: 0}
 --- !u!1 &6315847907140020624
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,6 +219,7 @@ GameObject:
   - component: {fileID: 3498769657672233350}
   - component: {fileID: 1007391154625271728}
   - component: {fileID: 5697749288013364372}
+  - component: {fileID: 5781432401079129981}
   m_Layer: 0
   m_Name: TeleportOut
   m_TagString: Untagged
@@ -370,6 +385,19 @@ MonoBehaviour:
   movesVertically: 0
   speedV: 0
   isFacingUp: 0
+--- !u!114 &5781432401079129981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6315847907140020624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6899515a7f0b874cb1991511201451d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectRb: {fileID: 0}
 --- !u!1 &7358310217728737072
 GameObject:
   m_ObjectHideFlags: 0
