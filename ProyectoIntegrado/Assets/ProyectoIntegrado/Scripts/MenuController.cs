@@ -7,29 +7,63 @@ using UnityEngine.UI;
 public class MenuController : MonoBehaviour
 {
     // Referencias a los botones
-    public Button playButton;
-    public Button quitButton;
+    [Header("Botones de MainMenu")]
+    public Button button_MainMenu_Levels;
+    public Button button_MainMenu_Help;
+    public Button button_MainMenu_Exit;
+
+    [Header("Botones de Levels")]
+
+    [Header("Botones de Help")]
+    public Button button_Help_Back;
+
+    [Header("Paneles")]
+    public GameObject panel_MainMenu;
+    public GameObject panel_Levels;
+    public GameObject panel_Help;
 
     void Start()
     {
-        // Asignar las funciones a los botones
-        playButton.onClick.AddListener(OnPlayButtonClicked);
-        quitButton.onClick.AddListener(OnQuitButtonClicked);
-       
+        // Asigna las funciones de los botones.
+
+        button_MainMenu_Levels.onClick.AddListener(OpenLevels);
+        button_MainMenu_Help.onClick.AddListener(OpenHelp);
+        button_MainMenu_Exit.onClick.AddListener(CloseGame);
+
+        button_Help_Back.onClick.AddListener(OpenMainMenu);
+
+
+        // Desactiva todos los paneles excepto MainMenu.
+
+        panel_MainMenu.SetActive(true);
+        panel_Levels.SetActive(false);
+        panel_Help.SetActive(false);
     }
 
-    // Función para iniciar el juego
-    void OnPlayButtonClicked()
+    void OpenMainMenu()
     {
-        Debug.Log("Iniciar juego...");
-        // Cargar la escena del juego (cambia "GameScene" por el nombre de tu escena)
-        SceneManager.LoadScene("Level_01");
+        panel_MainMenu.SetActive(true);
+        panel_Levels.SetActive(false);
+        panel_Help.SetActive(false);
     }
 
-    // Función para salir del juego
-    void OnQuitButtonClicked()
+    void OpenLevels()
     {
-        Debug.Log("Salir del juego...");
+        panel_MainMenu.SetActive(false);
+        panel_Levels.SetActive(true);
+        panel_Help.SetActive(false);
+    }
+
+    void OpenHelp()
+    {
+        panel_MainMenu.SetActive(false);
+        panel_Levels.SetActive(false);
+        panel_Help.SetActive(true);
+    }
+
+    void CloseGame()
+    {
+        Debug.Log("Salir del juego");
         Application.Quit();
     }
 }
