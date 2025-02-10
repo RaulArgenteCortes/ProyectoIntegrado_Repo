@@ -181,6 +181,11 @@ public class PlayerController2D : MonoBehaviour
         SceneManager.LoadScene(currentScene.name);
     }
 
+    void OpenPauseMenu()
+    {
+        Debug.Log("Pause Menu");
+    }
+
     void HandleAnimations() // Define cuando cambia las condiciones del animator.
     {
         if (playerRb.velocity.y > 0.01)
@@ -248,6 +253,14 @@ public class PlayerController2D : MonoBehaviour
         if (context.started)
         {
             RestartScene();
+        }
+    }
+
+    public void HandlePause(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            OpenPauseMenu();
         }
     }
 
