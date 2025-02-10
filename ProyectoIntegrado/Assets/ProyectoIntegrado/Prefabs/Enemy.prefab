@@ -173,10 +173,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectRb: {fileID: 0}
-  movesHorizontally: 0
   speedH: 0
   isFacingRight: 0
-  movesVertically: 0
   speedV: 0
   isFacingUp: 0
 --- !u!114 &6044595097026230018
