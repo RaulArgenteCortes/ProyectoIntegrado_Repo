@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/ProyectoIntegrado/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/ProyectoIntegrado/Scenes/MainMenu.unity
+    guid: 8fbf07e7e10650b4f8d3d14f978903fe
   - enabled: 1
     path: Assets/ProyectoIntegrado/Scenes/Level_01.unity
     guid: 47c1a8f9af78c4a4882cd5df6d9e5398
@@ -17,4 +20,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ProyectoIntegrado/Scenes/Level_03.unity
     guid: 6d74a4e544a56b34abb01aade336b7ee
+  - enabled: 1
+    path: Assets/ProyectoIntegrado/Scenes/Level_04.unity
+    guid: da857290426e27e47a0aa3c712e40d75
+  - enabled: 1
+    path: Assets/ProyectoIntegrado/Scenes/Level_05.unity
+    guid: 73ebbab756c524044bd829a8164a5bfe
+  - enabled: 1
+    path: Assets/ProyectoIntegrado/Scenes/Level_06.unity
+    guid: 9b1fb5eff02c9604eb4425dab4f23c86
   m_configObjects: {}
