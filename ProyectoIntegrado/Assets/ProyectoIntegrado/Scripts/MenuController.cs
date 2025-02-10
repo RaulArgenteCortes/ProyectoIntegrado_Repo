@@ -13,6 +13,7 @@ public class MenuController : MonoBehaviour
     public Button button_MainMenu_Exit;
 
     [Header("Botones de Levels")]
+    public Button button_Levels_Back;
 
     [Header("Botones de Help")]
     public Button button_Help_Back;
@@ -30,14 +31,14 @@ public class MenuController : MonoBehaviour
         button_MainMenu_Help.onClick.AddListener(OpenHelp);
         button_MainMenu_Exit.onClick.AddListener(CloseGame);
 
+        button_Levels_Back.onClick.AddListener(OpenMainMenu);
+
         button_Help_Back.onClick.AddListener(OpenMainMenu);
 
 
         // Desactiva todos los paneles excepto MainMenu.
 
-        panel_MainMenu.SetActive(true);
-        panel_Levels.SetActive(false);
-        panel_Help.SetActive(false);
+        OpenMainMenu();
     }
 
     void OpenMainMenu()
