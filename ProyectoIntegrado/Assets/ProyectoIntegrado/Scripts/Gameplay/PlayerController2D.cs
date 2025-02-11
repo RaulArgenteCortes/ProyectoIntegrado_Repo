@@ -32,15 +32,23 @@ public class PlayerController2D : MonoBehaviour
     [SerializeField] float groundCheckRadius = 0.1f;
     [SerializeField] LayerMask groundLayer;
 
+    [Header("Pause Parameters")]
+    PauseController Script_PauseController;
+
     void Start()
     {
         // Autoreferencia componentes.
         playerRb = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
         playerAnim = GetComponent<Animator>();
+
+        // Fijación de variables
         isFacingRight = true;
         isJumpHolded = false;
         canLengthenJump = false;
+
+        // Referencias a otros scripts
+        Script_PauseController = GameObject.FindWithTag("PauseMenu").GetComponent<PauseController>();
     }
 
     void Update() // Funciones que se activan puntualmente.
@@ -190,11 +198,6 @@ public class PlayerController2D : MonoBehaviour
         SceneManager.LoadScene(currentScene.name);
     }
 
-    void OpenPauseMenu()
-    {
-        Debug.Log("Pause Menu");
-    }
-
     void HandleAnimations() // Define cuando cambia las condiciones del animator.
     {
         if (playerRb.velocity.y > 0.01)
@@ -224,14 +227,6 @@ public class PlayerController2D : MonoBehaviour
     }
 
     #region Input Events
-
-    // Para crear un evento:
-    /*
-        public void Handle'movimiento'(InputAction.CallbackContext context)
-        {
-            
-        }
-    */
 
     public void HandleMove(InputAction.CallbackContext context)
     {
@@ -270,7 +265,7 @@ public class PlayerController2D : MonoBehaviour
     {
         if (context.started)
         {
-            OpenPauseMenu();
+            Script_PauseController.OpenPauseMenu();
         }
     }
 

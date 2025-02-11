@@ -11,6 +11,7 @@ TagManager:
   - Boost_Teleport
   - WarpH
   - WarpV
+  - PauseMenu
   layers:
   - Default
   - TransparentFX
