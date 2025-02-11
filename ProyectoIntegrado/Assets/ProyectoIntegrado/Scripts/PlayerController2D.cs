@@ -22,8 +22,9 @@ public class PlayerController2D : MonoBehaviour
 
     [Header("Jump Parameters")]
     public float jumpForce;
-    public float jumpLengthening;
-    public bool isJumpHolded;
+    [SerializeField] float jumpLengthening;
+    [SerializeField] bool isJumpHolded;
+    [SerializeField] bool canLengthenJump;
 
     [Header("GroundCheck Parameters")]
     [SerializeField] bool isGrounded;
@@ -39,6 +40,7 @@ public class PlayerController2D : MonoBehaviour
         playerAnim = GetComponent<Animator>();
         isFacingRight = true;
         isJumpHolded = false;
+        canLengthenJump = false;
     }
 
     void Update() // Funciones que se activan puntualmente.
@@ -47,6 +49,13 @@ public class PlayerController2D : MonoBehaviour
 
         GroundCheck();
 
+        // Permite alargar el salto si el jugador esta subiendo
+        if (playerRb.velocity.y < 0)
+        {
+            canLengthenJump = false;
+        }
+
+        // Limita las velocidades del jugador
         if (playerRb.velocity.x > maxRunSpeed || playerRb.velocity.x < maxRunSpeed * -1) // Evita que el jugador avance demasiado rápido.
         {
             playerRb.velocity = new Vector2(maxRunSpeed * moveInput.x, playerRb.velocity.y);
@@ -169,7 +178,7 @@ public class PlayerController2D : MonoBehaviour
 
     void LengthenJump()
     {
-        if (isJumpHolded == true && playerRb.velocity.y > 0) // Alarga el salto cuando se mantiene en input.
+        if (isJumpHolded == true && canLengthenJump == true) // Alarga el salto cuando se mantiene en input.
         {
             playerRb.AddForce(Vector3.up * jumpLengthening, ForceMode2D.Impulse);
         }
@@ -235,6 +244,7 @@ public class PlayerController2D : MonoBehaviour
         {
             if (isGrounded == true)
             {
+                canLengthenJump = true;
                 playerRb.velocity = new Vector3(playerRb.velocity.x, 0, 0); // Reinicia la caida para evitar antisaltos
                 playerRb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
             }
