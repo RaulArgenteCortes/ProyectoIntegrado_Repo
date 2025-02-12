@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 975028277119117153}
   SfxSource: {fileID: 1307534240531342188}
-  backGround: {fileID: 8300000, guid: 74f6b1894c894e5469839283d3a15659, type: 3}
+  backGround: {fileID: 8300000, guid: e920c10c6064a4d43b8ca6ddd2997afb, type: 3}
   jump: {fileID: 8300000, guid: fdab25ac3743a1b4d8a07af83619ee2d, type: 3}
   death: {fileID: 8300000, guid: 70ef6bd5333e78841a5f3c007b96c5ad, type: 3}
   warp: {fileID: 8300000, guid: 1fc4a717f505cb244b76ef6822d16d86, type: 3}
@@ -99,7 +99,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -229,7 +229,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

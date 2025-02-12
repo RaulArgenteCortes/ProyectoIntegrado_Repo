@@ -202,19 +202,7 @@ MonoBehaviour:
     m_ActionId: e5da8e62-4f79-41f0-8d20-86b7795eda52
     m_ActionName: Gameplay/Jump[/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7981548965341501903}
-        m_TargetAssemblyTypeName: PlayerController2D, Assembly-CSharp
-        m_MethodName: HandleReset
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 2d7b4144-93cd-4859-b298-a4d4289879c1
     m_ActionName: Gameplay/Reset[/Keyboard/r]
   - m_PersistentCalls:
@@ -273,6 +261,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  Script_PauseController: {fileID: 0}
+  Script_AudioManager: {fileID: 0}
 --- !u!114 &150331871314525730
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -18,6 +18,22 @@ public class AudioManager : MonoBehaviour
     public AudioClip levelComplete;
     public AudioClip buttonPress;
 
+    public static AudioManager instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else 
+        { 
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+    }
+
     void Start()
     {
         musicSource.clip = backGround;
