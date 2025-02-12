@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8383779108381486187}
   - component: {fileID: 8241340608542550729}
   - component: {fileID: 2964529676573083654}
+  - component: {fileID: 3347726510833412132}
   m_Layer: 0
   m_Name: LongJump
   m_TagString: Boost_LongJump
@@ -241,3 +242,17 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &3347726510833412132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7456459091538366053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aad0d28e92d9c1c4b8706d72e8016beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inactiveSprite: {fileID: 540223811, guid: 950b7d67f2f98c94a9599dea80786c31, type: 3}
+  activeSprite: {fileID: 172540008, guid: 950b7d67f2f98c94a9599dea80786c31, type: 3}

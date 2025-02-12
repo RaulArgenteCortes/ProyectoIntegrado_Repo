@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1541196655688724631}
   - component: {fileID: 1816114643377547650}
   - component: {fileID: 9073662435911205975}
+  - component: {fileID: 6010447875935900461}
   m_Layer: 0
   m_Name: BounceJump
   m_TagString: Boost_BounceJump
@@ -241,3 +242,17 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &6010447875935900461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4131110924462313079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aad0d28e92d9c1c4b8706d72e8016beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inactiveSprite: {fileID: 1650153187, guid: 70861cba196a0864897524ae26a866c0, type: 3}
+  activeSprite: {fileID: 1401249265, guid: 70861cba196a0864897524ae26a866c0, type: 3}

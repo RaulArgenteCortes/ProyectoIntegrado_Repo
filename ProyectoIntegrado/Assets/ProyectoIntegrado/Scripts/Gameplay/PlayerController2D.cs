@@ -36,8 +36,9 @@ public class PlayerController2D : MonoBehaviour
     [SerializeField] float groundCheckRadius = 0.1f;
     [SerializeField] LayerMask groundLayer;
 
-    [Header("Pause Parameters")]
-    PauseController Script_PauseController;
+    [Header("External Scripts")]
+    [SerializeField] PauseController Script_PauseController;
+    [SerializeField] AudioManager Script_AudioManager;
 
     void Start()
     {
@@ -53,6 +54,7 @@ public class PlayerController2D : MonoBehaviour
 
         // Referencias a otros scripts
         Script_PauseController = GameObject.FindWithTag("PauseMenu").GetComponent<PauseController>();
+        Script_AudioManager = GameObject.FindWithTag("Audio").GetComponent<AudioManager>();
     }
 
     void Update() // Funciones que se activan puntualmente.
@@ -103,6 +105,11 @@ public class PlayerController2D : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("WarpH") || collision.gameObject.CompareTag("WarpV") || collision.gameObject.CompareTag("Boost_Teleport")) // Solo reproduce el sonido warp
+        {
+            Script_AudioManager.PlaySfx(Script_AudioManager.warp);
+        }
+
         if (collision.gameObject.CompareTag("Boost_TallJump")) // Impulsa al jugador en el Y opuesto.
         {
             if (playerRb.velocity.y <= 0)
@@ -113,6 +120,8 @@ public class PlayerController2D : MonoBehaviour
             {
                 playerRb.velocity = new Vector2(playerRb.velocity.x, -tallJumpForce);
             }
+
+            Script_AudioManager.PlaySfx(Script_AudioManager.boost);
         }
         else if (collision.gameObject.CompareTag("Boost_LongJump")) // Impulsa al jugador en el X y en el Y opuesto.
         {
@@ -124,6 +133,8 @@ public class PlayerController2D : MonoBehaviour
             {
                 playerRb.velocity = new Vector2(acceleration * moveInput.x * longJumpMultiplier, jumpForce * -1);
             }
+
+            Script_AudioManager.PlaySfx(Script_AudioManager.boost);
         }
         else if (collision.gameObject.CompareTag("Boost_BounceJump")) // Impulsa al jugador en el X opuesto y en el Y.
         {
@@ -149,9 +160,13 @@ public class PlayerController2D : MonoBehaviour
                     playerRb.velocity = new Vector2(acceleration * longJumpMultiplier, jumpForce);
                 }
             }
+
+            Script_AudioManager.PlaySfx(Script_AudioManager.boost);
         }
         else if (collision.gameObject.CompareTag("Death")) // Mata al jugador.
         {
+            Script_AudioManager.PlaySfx(Script_AudioManager.death);
+
             RestartScene();
         }
     }
@@ -246,6 +261,8 @@ public class PlayerController2D : MonoBehaviour
                 canLengthenJump = true;
                 playerRb.velocity = new Vector3(playerRb.velocity.x, 0, 0); // Reinicia la caida para evitar antisaltos
                 playerRb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
+
+                Script_AudioManager.PlaySfx(Script_AudioManager.jump);
             }
 
             isJumpHolded = true;

@@ -12,6 +12,7 @@ TagManager:
   - WarpH
   - WarpV
   - PauseMenu
+  - Audio
   layers:
   - Default
   - TransparentFX

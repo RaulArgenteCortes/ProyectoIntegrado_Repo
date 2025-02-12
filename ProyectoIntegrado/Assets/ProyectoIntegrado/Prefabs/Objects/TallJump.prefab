@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2313788265145594083}
   - component: {fileID: 7002344452069574669}
   - component: {fileID: 6947919486838835438}
+  - component: {fileID: 7570611929437993219}
   m_Layer: 0
   m_Name: TallJump
   m_TagString: Boost_TallJump
@@ -241,3 +242,17 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &7570611929437993219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979757517410118424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aad0d28e92d9c1c4b8706d72e8016beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inactiveSprite: {fileID: -2121687236, guid: 2737e744fe6c96f4c9173187346fbb62, type: 3}
+  activeSprite: {fileID: -626602151, guid: 2737e744fe6c96f4c9173187346fbb62, type: 3}
