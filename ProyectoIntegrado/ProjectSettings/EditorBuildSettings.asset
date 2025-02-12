@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ProyectoIntegrado/Scenes/Level_11.unity
     guid: 1c187f56b92c906469b10fca4b231480
+  - enabled: 1
+    path: Assets/ProyectoIntegrado/Scenes/Level_12.unity
+    guid: f8b3e9b15e4ddfb4ab29ecef870771a3
   m_configObjects: {}
