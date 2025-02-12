@@ -261,6 +261,8 @@ MonoBehaviour:
   isFacingRight: 1
   maxRunSpeed: 32
   maxFallingSpeed: 16
+  tallJumpForce: 20
+  longJumpMultiplier: 2
   jumpForce: 14
   jumpLengthening: 0.25
   isJumpHolded: 0

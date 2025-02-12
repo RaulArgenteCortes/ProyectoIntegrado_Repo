@@ -20,6 +20,10 @@ public class PlayerController2D : MonoBehaviour
     [SerializeField] float maxRunSpeed;
     [SerializeField] float maxFallingSpeed;
 
+    [Header("Boost Parameters")]
+    [SerializeField] float tallJumpForce;
+    [SerializeField] float longJumpMultiplier;
+
     [Header("Jump Parameters")]
     public float jumpForce;
     [SerializeField] float jumpLengthening;
@@ -103,22 +107,22 @@ public class PlayerController2D : MonoBehaviour
         {
             if (playerRb.velocity.y <= 0)
             {
-                playerRb.velocity = new Vector2(playerRb.velocity.x, 24);
+                playerRb.velocity = new Vector2(playerRb.velocity.x, tallJumpForce);
             } 
             else
             {
-                playerRb.velocity = new Vector2(playerRb.velocity.x, -24);
+                playerRb.velocity = new Vector2(playerRb.velocity.x, -tallJumpForce);
             }
         }
         else if (collision.gameObject.CompareTag("Boost_LongJump")) // Impulsa al jugador en el X y en el Y opuesto.
         {
             if (playerRb.velocity.y <= 0)
             {
-                playerRb.velocity = new Vector2(acceleration * moveInput.x * 2, jumpForce);
+                playerRb.velocity = new Vector2(acceleration * moveInput.x * longJumpMultiplier, jumpForce);
             }
             else
             {
-                playerRb.velocity = new Vector2(acceleration * moveInput.x * 2, jumpForce * -1);
+                playerRb.velocity = new Vector2(acceleration * moveInput.x * longJumpMultiplier, jumpForce * -1);
             }
         }
         else if (collision.gameObject.CompareTag("Boost_BounceJump")) // Impulsa al jugador en el X opuesto y en el Y.
@@ -127,22 +131,22 @@ public class PlayerController2D : MonoBehaviour
             {
                 if (playerRb.velocity.x >= 0)
                 {
-                    playerRb.velocity = new Vector2(acceleration * -2, jumpForce * -1);
+                    playerRb.velocity = new Vector2(acceleration * -longJumpMultiplier, jumpForce * -1);
                 }
                 else if (playerRb.velocity.x <= 0)
                 {
-                    playerRb.velocity = new Vector2(acceleration * 2, jumpForce * -1);
+                    playerRb.velocity = new Vector2(acceleration * longJumpMultiplier, jumpForce * -1);
                 }
             }
             else
             {
                 if (playerRb.velocity.x >= 0)
                 {
-                    playerRb.velocity = new Vector2(acceleration * -2, jumpForce);
+                    playerRb.velocity = new Vector2(acceleration * -longJumpMultiplier, jumpForce);
                 }
                 else if (playerRb.velocity.x <= 0)
                 {
-                    playerRb.velocity = new Vector2(acceleration * 2, jumpForce);
+                    playerRb.velocity = new Vector2(acceleration * longJumpMultiplier, jumpForce);
                 }
             }
         }
