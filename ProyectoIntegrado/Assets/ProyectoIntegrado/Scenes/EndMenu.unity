@@ -2599,7 +2599,7 @@ GameObject:
   - component: {fileID: 683642492}
   - component: {fileID: 683642491}
   m_Layer: 5
-  m_Name: Controls
+  m_Name: FinalMessage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2644,7 +2644,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'And then our little miner, without even knowing it, got stuck in a loop
+  m_text: 'And then our little miner, without even knowing it, got stuck on a loop
     where he''ll be going through the same caves forever.
 
 
