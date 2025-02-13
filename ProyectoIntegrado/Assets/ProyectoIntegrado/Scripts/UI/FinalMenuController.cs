@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class FinalMenuController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [Header("Botones")]
+    public Button button_FinalMenu_MainMenu;
+
     void Start()
     {
-        
+        button_FinalMenu_MainMenu.onClick.AddListener(LoadMainMenu);
     }
 
-    // Update is called once per frame
-    void Update()
+    void LoadMainMenu()
     {
-        
+        SceneManager.LoadScene("MainMenu");
     }
 }
