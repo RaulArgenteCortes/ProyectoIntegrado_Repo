@@ -256,3 +256,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inactiveSprite: {fileID: -2121687236, guid: 2737e744fe6c96f4c9173187346fbb62, type: 3}
   activeSprite: {fileID: -626602151, guid: 2737e744fe6c96f4c9173187346fbb62, type: 3}
+  activeDuration: 2

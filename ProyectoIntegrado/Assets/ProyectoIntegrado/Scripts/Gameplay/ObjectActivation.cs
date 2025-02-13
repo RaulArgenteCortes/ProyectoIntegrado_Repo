@@ -1,7 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class ObjectActivation : MonoBehaviour
 {
@@ -9,21 +9,45 @@ public class ObjectActivation : MonoBehaviour
     SpriteRenderer spriteRenderer;
     [SerializeField] Sprite inactiveSprite;
     [SerializeField] Sprite activeSprite;
-    bool isActive;
+    [SerializeField] float activeDuration;
+    float countdown;
 
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        countdown = 0;
+    }
+
+    private void FixedUpdate()
+    {
+        SpriteCountdown();
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(ChangeSprite());
+            //StartCoroutine(ChangeSprite());
+
+            countdown = activeDuration;
         }
     }
 
+    void SpriteCountdown()
+    {
+        if (countdown > 0)
+        {
+            countdown -= Time.deltaTime;
+            spriteRenderer.sprite = activeSprite;
+        }
+        else
+        {
+            spriteRenderer.sprite = inactiveSprite;
+        }
+    }
+
+    /*
     IEnumerator ChangeSprite()
     {
         spriteRenderer.sprite = activeSprite;
@@ -34,4 +58,5 @@ public class ObjectActivation : MonoBehaviour
         }
         spriteRenderer.sprite = inactiveSprite;
     }
+    */
 }
