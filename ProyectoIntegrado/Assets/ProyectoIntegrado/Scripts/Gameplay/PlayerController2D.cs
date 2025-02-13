@@ -23,6 +23,7 @@ public class PlayerController2D : MonoBehaviour
     [Header("Boost Parameters")]
     [SerializeField] float tallJumpForce;
     [SerializeField] float longJumpMultiplier;
+    [SerializeField] float bounceJumpMultiplier;
 
     [Header("Jump Parameters")]
     public float jumpForce;
@@ -138,26 +139,26 @@ public class PlayerController2D : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Boost_BounceJump")) // Impulsa al jugador en el X opuesto y en el Y.
         {
-            if (playerRb.velocity.y <= 0)
+            if (playerRb.velocity.y < 0)
             {
                 if (playerRb.velocity.x >= 0)
                 {
-                    playerRb.velocity = new Vector2(acceleration * -longJumpMultiplier, jumpForce * -1);
+                    playerRb.velocity = new Vector2(acceleration * -bounceJumpMultiplier, jumpForce * -1);
                 }
                 else if (playerRb.velocity.x <= 0)
                 {
-                    playerRb.velocity = new Vector2(acceleration * longJumpMultiplier, jumpForce * -1);
+                    playerRb.velocity = new Vector2(acceleration * bounceJumpMultiplier, jumpForce * -1);
                 }
             }
             else
             {
                 if (playerRb.velocity.x >= 0)
                 {
-                    playerRb.velocity = new Vector2(acceleration * -longJumpMultiplier, jumpForce);
+                    playerRb.velocity = new Vector2(acceleration * -bounceJumpMultiplier, jumpForce);
                 }
                 else if (playerRb.velocity.x <= 0)
                 {
-                    playerRb.velocity = new Vector2(acceleration * longJumpMultiplier, jumpForce);
+                    playerRb.velocity = new Vector2(acceleration * bounceJumpMultiplier, jumpForce);
                 }
             }
 

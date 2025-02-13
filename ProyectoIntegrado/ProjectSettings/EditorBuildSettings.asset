@@ -44,4 +44,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ProyectoIntegrado/Scenes/Level_12.unity
     guid: f8b3e9b15e4ddfb4ab29ecef870771a3
+  - enabled: 1
+    path: Assets/ProyectoIntegrado/Scenes/Level_13.unity
+    guid: 8f2ff167f50eb1d4286747f326f4351a
+  - enabled: 1
+    path: Assets/ProyectoIntegrado/Scenes/Level_14.unity
+    guid: 369527cfb7fd2a24e9262fc371001f8f
+  - enabled: 1
+    path: Assets/ProyectoIntegrado/Scenes/Level_15.unity
+    guid: 2cf5e9f0be7c1d44f8872b5be49f3048
+  - enabled: 1
+    path: Assets/ProyectoIntegrado/Scenes/Level_16.unity
+    guid: 42ea270126c327e48a3a784954fb948a
   m_configObjects: {}

@@ -49,7 +49,7 @@ public class MoveController : MonoBehaviour
 
     void MovingV()
     {
-        if (isFacingRight == true)
+        if (isFacingUp == true)
         {
             objectRb.transform.position = new Vector2(objectRb.transform.position.x, objectRb.transform.position.y + speedV / 100);
         }
