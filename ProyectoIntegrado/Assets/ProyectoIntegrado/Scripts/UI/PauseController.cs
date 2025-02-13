@@ -17,6 +17,9 @@ public class PauseController : MonoBehaviour
     public GameObject panel_PauseMenu;
     [SerializeField] bool isGamePaused;
 
+    [Header("External Scripts")]
+    [SerializeField] AudioManager Script_AudioManager;
+
     void Start()
     {
         // Asigna las funciones de los botones.
@@ -28,10 +31,15 @@ public class PauseController : MonoBehaviour
 
         // Desactiva el panel
         panel_PauseMenu.SetActive(false);
+
+        // Referencias a otros scripts
+        Script_AudioManager = GameObject.FindWithTag("Audio").GetComponent<AudioManager>();
     }
 
     public void OpenPauseMenu()
     {
+        Script_AudioManager.PlaySfx(Script_AudioManager.buttonPress);
+
         if (isGamePaused == false)
         {
             panel_PauseMenu.SetActive(true);
@@ -48,6 +56,8 @@ public class PauseController : MonoBehaviour
 
     void LoadMainMenu()
     {
+        Script_AudioManager.PlaySfx(Script_AudioManager.buttonPress);
+
         SceneManager.LoadScene("MainMenu");
     }
 }

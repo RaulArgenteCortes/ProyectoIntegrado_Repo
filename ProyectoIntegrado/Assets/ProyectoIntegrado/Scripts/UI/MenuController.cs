@@ -23,6 +23,9 @@ public class MenuController : MonoBehaviour
     public GameObject panel_Levels;
     public GameObject panel_Help;
 
+    [Header("External Scripts")]
+    [SerializeField] AudioManager Script_AudioManager;
+
     void Start()
     {
         // Asigna las funciones de los botones.
@@ -37,8 +40,12 @@ public class MenuController : MonoBehaviour
 
 
         // Desactiva todos los paneles excepto MainMenu.
+        panel_MainMenu.SetActive(true);
+        panel_Levels.SetActive(false);
+        panel_Help.SetActive(false);
 
-        OpenMainMenu();
+        // Referencias a otros scripts
+        Script_AudioManager = GameObject.FindWithTag("Audio").GetComponent<AudioManager>();
     }
 
     void OpenMainMenu()
@@ -46,6 +53,8 @@ public class MenuController : MonoBehaviour
         panel_MainMenu.SetActive(true);
         panel_Levels.SetActive(false);
         panel_Help.SetActive(false);
+
+        Script_AudioManager.PlaySfx(Script_AudioManager.buttonPress);
     }
 
     void OpenLevels()
@@ -53,6 +62,8 @@ public class MenuController : MonoBehaviour
         panel_MainMenu.SetActive(false);
         panel_Levels.SetActive(true);
         panel_Help.SetActive(false);
+
+        Script_AudioManager.PlaySfx(Script_AudioManager.buttonPress);
     }
 
     void OpenHelp()
@@ -60,10 +71,13 @@ public class MenuController : MonoBehaviour
         panel_MainMenu.SetActive(false);
         panel_Levels.SetActive(false);
         panel_Help.SetActive(true);
+
+        Script_AudioManager.PlaySfx(Script_AudioManager.buttonPress);
     }
 
     void CloseGame()
     {
+        Script_AudioManager.PlaySfx(Script_AudioManager.buttonPress);
         Debug.Log("Salir del juego");
         Application.Quit();
     }
