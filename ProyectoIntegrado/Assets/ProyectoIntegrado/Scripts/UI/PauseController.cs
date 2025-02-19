@@ -28,6 +28,7 @@ public class PauseController : MonoBehaviour
 
         // Fijación de variables
         isGamePaused = false;
+        Time.timeScale = 1;
 
         // Desactiva el panel
         panel_PauseMenu.SetActive(false);
@@ -57,7 +58,8 @@ public class PauseController : MonoBehaviour
     void LoadMainMenu()
     {
         Script_AudioManager.PlaySfx(Script_AudioManager.buttonPress);
-
+        Time.timeScale = 1;
+        isGamePaused = false;
         SceneManager.LoadScene("MainMenu");
     }
 }

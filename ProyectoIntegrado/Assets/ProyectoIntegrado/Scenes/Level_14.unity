@@ -4248,7 +4248,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 294730805565003316, guid: 9ddeb4ccbb9ce564aaf4642f5b933e4d, type: 3}
       propertyPath: m_text
-      value: It's about timing
+      value: 14. It's about timing
       objectReference: {fileID: 0}
     - target: {fileID: 576130175869472885, guid: 9ddeb4ccbb9ce564aaf4642f5b933e4d, type: 3}
       propertyPath: m_Pivot.x
