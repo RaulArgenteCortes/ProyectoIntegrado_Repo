@@ -14,7 +14,8 @@ public class PlayerController2D : MonoBehaviour
     [SerializeField] Animator playerAnim;
 
     [Header("Movement Parameters")]
-    private Vector3 moveInput; //Almacena del input del player
+    private Vector3 moveInput; // Almacena del input del player
+    public float moveInputDirection; // El valor de moveInput se moverá aquí
     public float acceleration;
     [SerializeField] bool isFacingRight;
     [SerializeField] float maxRunSpeed;
@@ -64,6 +65,20 @@ public class PlayerController2D : MonoBehaviour
 
         GroundCheck();
 
+        // Se asegura que el número del imput se un numero entero
+        if (moveInput.x > 0)
+        {
+            moveInputDirection = 1;
+        } 
+        else if (moveInput.x < 0)
+        {
+            moveInputDirection = -1;
+        }
+        else if (moveInput.x == 0)
+        {
+            moveInputDirection = 0;
+        }
+
         // Permite alargar el salto si el jugador esta subiendo
         if (playerRb.velocity.y < 0)
         {
@@ -73,7 +88,7 @@ public class PlayerController2D : MonoBehaviour
         // Limita las velocidades del jugador
         if (playerRb.velocity.x > maxRunSpeed || playerRb.velocity.x < maxRunSpeed * -1) // Evita que el jugador avance demasiado rápido.
         {
-            playerRb.velocity = new Vector2(maxRunSpeed * moveInput.x, playerRb.velocity.y);
+            playerRb.velocity = new Vector2(maxRunSpeed * moveInputDirection, playerRb.velocity.y);
         }
         if (playerRb.velocity.y < maxFallingSpeed * -1) // Evita que el jugador caiga demasiado rápido.
         {
@@ -81,14 +96,14 @@ public class PlayerController2D : MonoBehaviour
         }
 
         // Flipea el jugador según el input.
-        if (moveInput.x > 0)
+        if (moveInputDirection > 0)
         {
             if (!isFacingRight)
             {
                 Flip();
             }
         }
-        if (moveInput.x < 0)
+        if (moveInputDirection < 0)
         {
             if (isFacingRight)
             {
@@ -128,11 +143,11 @@ public class PlayerController2D : MonoBehaviour
         {
             if (playerRb.velocity.y <= 0)
             {
-                playerRb.velocity = new Vector2(acceleration * moveInput.x * longJumpMultiplier, jumpForce);
+                playerRb.velocity = new Vector2(acceleration * moveInputDirection * longJumpMultiplier, jumpForce);
             }
             else
             {
-                playerRb.velocity = new Vector2(acceleration * moveInput.x * longJumpMultiplier, jumpForce * -1);
+                playerRb.velocity = new Vector2(acceleration * moveInputDirection * longJumpMultiplier, jumpForce * -1);
             }
 
             Script_AudioManager.PlaySfx(Script_AudioManager.boost);
@@ -174,18 +189,18 @@ public class PlayerController2D : MonoBehaviour
 
     void Movement()
     {
-        playerRb.AddForce(Vector3.right * moveInput.x * acceleration);
+        playerRb.AddForce(Vector3.right * moveInputDirection * acceleration);
 
         // Reduce el deslizamiento
-        if (moveInput.x == 0 && playerRb.velocity.x < 0.1 && playerRb.velocity.x > -0.1) // Detiene al jugador cuando no hay input y apenas se mueva.
+        if (moveInputDirection == 0 && playerRb.velocity.x < 0.1 && playerRb.velocity.x > -0.1) // Detiene al jugador cuando no hay input y apenas se mueva.
         {
             playerRb.velocity = new Vector3(0, playerRb.velocity.y, 0);
         }
-        else if (playerRb.velocity.x > 0 && moveInput.x != 1) // Frena al jugador cuando no hay input en la derecha.
+        else if (playerRb.velocity.x > 0 && moveInputDirection != 1) // Frena al jugador cuando no hay input en la derecha.
         {
                 playerRb.AddForce(Vector3.right * playerRb.velocity.x * -3);
         }
-        else if (playerRb.velocity.x < -0 && moveInput.x != -1) // Frena al jugador cuando no hay input en la izquierda.
+        else if (playerRb.velocity.x < -0 && moveInputDirection != -1) // Frena al jugador cuando no hay input en la izquierda.
         {
             playerRb.AddForce(Vector3.right * playerRb.velocity.x * -3);
         } 
@@ -236,7 +251,7 @@ public class PlayerController2D : MonoBehaviour
             playerAnim.SetBool("isFalling", false);
         }
 
-        if (moveInput.x > 0 || moveInput.x < 0) 
+        if (moveInputDirection > 0 || moveInputDirection < 0) 
         { 
             playerAnim.SetBool("isRunning", true); 
         }
